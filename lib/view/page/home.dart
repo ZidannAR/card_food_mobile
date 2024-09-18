@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_order_app1/model/food.dart';
-import 'package:food_order_app1/view/widget/card_.food.dart';
+import 'package:food_order_app1/view/widget/card_food.dart';
 import 'package:gap/gap.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 

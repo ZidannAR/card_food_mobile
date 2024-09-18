@@ -7,7 +7,11 @@ class CardFood extends StatelessWidget {
   final String rating;
   final String img;
   const CardFood({
-    super.key, required this.nama, required this.harga, required this.rating, required this.img,
+    super.key,
+    required this.nama,
+    required this.harga,
+    required this.rating,
+    required this.img,
   });
 
   @override
@@ -18,35 +22,45 @@ class CardFood extends StatelessWidget {
         child: Column(
           children: [
             AspectRatio(
-              aspectRatio: 3 / 2, 
-              
+              aspectRatio: 3 / 2,
               child: ClipRRect(
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10)
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10)),
+                child: Image(
+                  image: AssetImage(img),
+                  fit: BoxFit.cover,
                 ),
-                child: Image(image: AssetImage(img),
-                fit: BoxFit.cover,),
               ),
-              
             ),
             Padding(
-              padding: EdgeInsets.only(left: 10,right: 10),
+              padding: EdgeInsets.only(left: 10, right: 10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Row(
                     children: [
-                      Text(nama, style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17),),
+                      Text(
+                        nama,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 17),
+                      ),
                     ],
                   ),
                   Gap(10),
                   Row(
                     children: [
-                      Text(harga,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 12),),
+                      Text(
+                        harga,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 12),
+                      ),
                       Gap(100),
-                      Icon(Icons.star),
-                      Gap(15), 
+                      Icon(
+                        Icons.star,
+                        color: const Color.fromARGB(255, 254, 211, 84),
+                      ),
+                      Gap(15),
                       Text(rating)
                     ],
                   ),
