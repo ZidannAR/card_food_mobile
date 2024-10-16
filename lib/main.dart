@@ -18,6 +18,8 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MoviePage();
+    return const MaterialApp(
+      home: SplashScreen(),
+    );
   }
 }

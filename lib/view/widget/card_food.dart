@@ -6,6 +6,7 @@ class CardFood extends StatelessWidget {
   final String harga;
   final String rating;
   final String img;
+
   const CardFood({
     super.key,
     required this.nama,
@@ -17,58 +18,81 @@ class CardFood extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 10,
-      child: Center(
-        child: Column(
-          children: [
-            AspectRatio(
-              aspectRatio: 3 / 2,
-              child: ClipRRect(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10)),
-                child: Image(
-                  image: AssetImage(img),
-                  fit: BoxFit.cover,
-                ),
-              ),
+      elevation: 6,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Gambar makanan dengan sudut melengkung
+          ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(15),
+              topRight: Radius.circular(15),
             ),
-            Padding(
-              padding: EdgeInsets.only(left: 10, right: 10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        nama,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 17),
-                      ),
-                    ],
+            child: Image.network(
+              img,
+              fit: BoxFit.cover,
+              height: 150,
+              width: double.infinity,
+            ),
+          ),
+          // Detail makanan dengan padding
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Nama makanan
+                Text(
+                  nama,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
                   ),
-                  Gap(10),
-                  Row(
-                    children: [
-                      Text(
-                        harga,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 12),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const Gap(5),
+                // Harga dan rating
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Harga
+                    Text(
+                      harga,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
                       ),
-                      Gap(100),
-                      Icon(
-                        Icons.star,
-                        color: const Color.fromARGB(255, 254, 211, 84),
-                      ),
-                      Gap(15),
-                      Text(rating)
-                    ],
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
+                    ),
+                    // Rating dengan ikon bintang
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                          size: 20,
+                        ),
+                        const Gap(4),
+                        Text(
+                          rating,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
