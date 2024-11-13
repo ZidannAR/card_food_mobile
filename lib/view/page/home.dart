@@ -10,51 +10,118 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Scaffold(
-            body: Column(
-      children: [
-        // Header dengan gaya yang lebih menarik
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Experience the great food',
-                style: TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                  letterSpacing: 1.2,
+      home: Scaffold(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Gap(30),
+                // Header
+                const Text(
+                  'Selalu Ada Rasa Baru\nUntuk Dicoba!',
+                  style: TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-              const Gap(8), // Jarak antara judul dan subjudul
-              Text(
-                'Our daily healthy food',
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.grey[600],
+                const Gap(16),
+                // Search Box
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.search, color: Colors.grey),
+                      const Gap(8),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: 'Mau makan apa hari ini?',
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+                const Gap(30),
+                // Section Title
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text(
+                      'Rekomendasi',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      'Lihat Kategori',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.orange,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+                const Gap(20),
+                // GridView Rekomendasi
+                GridView.builder(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 16,
+                    childAspectRatio: 0.8,
+                  ),
+                  itemCount: itemfood.length,
+                  itemBuilder: (context, index) {
+                    return ZoomTapAnimation(
+                      child: CardFood(
+                        nama: itemfood[index].nama,
+                        harga: itemfood[index].harga,
+                        rating: itemfood[index].rating,
+                        img: itemfood[index].img,
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
-        Expanded(
-          child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2),
-            itemCount: itemfood.length,
-            itemBuilder: (context, index) {
-              return ZoomTapAnimation(
-                  child: CardFood(
-                      nama: itemfood[index].nama,
-                      harga: itemfood[index].harga,
-                      rating: itemfood[index].rating,
-                      img: itemfood[index].img));
-            },
-          ),
-        )
-      ],
-    )));
+        // Bottom Navigation Bar
+        bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.grey,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_bag),
+              label: 'Cart',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Profile',
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
