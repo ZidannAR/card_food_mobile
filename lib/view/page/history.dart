@@ -9,25 +9,23 @@ class HistoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: Padding(
-        padding:  EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               "Riwayat Pesanan",
               style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
             ),
-            Gap(10),
+            const Gap(10),
             Expanded(
               child: ListView.builder(
                 itemCount: listhistory.length,
-                itemBuilder: (context,index){
+                itemBuilder: (context, index) {
                   return ZoomTapAnimation(
-                    onTap: () {
-                      
-                    },
+                    onTap: () {},
                     child: CardHistory(
                       tanggal: listhistory[index].tanggal,
                       harga: listhistory[index].harga,
@@ -38,7 +36,7 @@ class HistoryPage extends StatelessWidget {
             )
           ],
         ),
-        ),
+      ),
     );
-    }
-    }
+  }
+}

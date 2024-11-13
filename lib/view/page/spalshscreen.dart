@@ -16,7 +16,9 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const Login1Page()), // Ganti dengan halaman login Anda
+        MaterialPageRoute(
+            builder: (context) =>
+                const Login1Page()), // Ganti dengan halaman login Anda
       );
     });
   }
@@ -24,7 +26,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFf8f9fa), // Warna latar belakang yang selaras dengan login
+      backgroundColor: const Color(
+          0xFFf8f9fa), // Warna latar belakang yang selaras dengan login
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -32,10 +35,11 @@ class _SplashScreenState extends State<SplashScreen> {
             Container(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.blueAccent.withOpacity(0.2), // Lingkaran dengan warna latar belakang
+                color: Colors.blueAccent
+                    .withOpacity(0.2), // Lingkaran dengan warna latar belakang
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(30.0),
+              child: const Padding(
+                padding: EdgeInsets.all(30.0),
                 child: Icon(
                   Icons.rice_bowl,
                   size: 150,

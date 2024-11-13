@@ -9,49 +9,52 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      home: Scaffold(
-        body: Column(
-          children: [
-            // Header dengan gaya yang lebih menarik
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Experience the great food',
-                    style: TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      letterSpacing: 1.2,
-                    ),
-                  ),
-                  const Gap(8), // Jarak antara judul dan subjudul
-                  Text(
-                    'Our daily healthy food',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.grey[600],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-                itemCount:itemfood.length ,
-                itemBuilder: (context, index) {
-                  return ZoomTapAnimation(child: CardFood(nama: itemfood[index].nama, harga: itemfood[index].harga, rating: itemfood[index].rating, img: itemfood[index].img));
-                },
+    return MaterialApp(
+        home: Scaffold(
+            body: Column(
+      children: [
+        // Header dengan gaya yang lebih menarik
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Experience the great food',
+                style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                  letterSpacing: 1.2,
                 ),
-            )
-          ],
+              ),
+              const Gap(8), // Jarak antara judul dan subjudul
+              Text(
+                'Our daily healthy food',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.grey[600],
+                ),
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2),
+            itemCount: itemfood.length,
+            itemBuilder: (context, index) {
+              return ZoomTapAnimation(
+                  child: CardFood(
+                      nama: itemfood[index].nama,
+                      harga: itemfood[index].harga,
+                      rating: itemfood[index].rating,
+                      img: itemfood[index].img));
+            },
+          ),
         )
-      )
-    );
+      ],
+    )));
   }
 }
-

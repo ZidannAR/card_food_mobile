@@ -9,35 +9,30 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("pesanan"),
-                Text("Tambah Pesanan")
-              ],
-            ),
-            Gap(10),
-            Expanded(
-              child:  ListView.separated(
-                itemCount: itemCart.length,
-                separatorBuilder: (context, index) => Divider(),
-                itemBuilder: (context , index){
-                  return CardCart(
-                    nama: itemCart[index].nama,
-                    jumlah: itemCart[index].jumlah,
-                    harga: itemCart[index].harga,
-                    gambar: itemCart[index].gambar,
-                  );
-                },
-              )
-            )
-          ],
-        ),
-      )
-    );
+        body: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [Text("pesanan"), Text("Tambah Pesanan")],
+          ),
+          const Gap(10),
+          Expanded(
+              child: ListView.separated(
+            itemCount: itemCart.length,
+            separatorBuilder: (context, index) => const Divider(),
+            itemBuilder: (context, index) {
+              return CardCart(
+                nama: itemCart[index].nama,
+                jumlah: itemCart[index].jumlah,
+                harga: itemCart[index].harga,
+                gambar: itemCart[index].gambar,
+              );
+            },
+          ))
+        ],
+      ),
+    ));
   }
 }

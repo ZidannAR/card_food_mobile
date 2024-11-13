@@ -23,7 +23,7 @@ class _RegisterPageState extends State<RegisterPage> {
       Navigator.pop(context); // Kembali ke halaman login
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Password tidak cocok")),
+        const SnackBar(content: Text("Password tidak cocok")),
       );
     }
   }
@@ -39,10 +39,11 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Ikon Register
-                Container(
+                const SizedBox(
                   width: 100,
                   height: 100,
-                  child: Icon(Icons.person_add_alt_1_rounded, size: 100, color: Colors.blue),
+                  child: Icon(Icons.person_add_alt_1_rounded,
+                      size: 100, color: Colors.blue),
                 ),
                 const SizedBox(height: 30),
                 const Text(
@@ -85,7 +86,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   obscureText: true,
                 ),
                 const SizedBox(height: 20),
-                
+
                 buttonPrimary(
                   buttonText: "Register",
                   onPressedActon: register,
