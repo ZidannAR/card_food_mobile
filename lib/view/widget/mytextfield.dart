@@ -20,7 +20,7 @@ class Mytextfield extends StatelessWidget {
             TextField(
               controller: controller,
               decoration: InputDecoration(
-                hintText: "masukan email",
+                hintText: hintText,
                 filled: true,
                 fillColor: const Color.fromARGB(255, 245, 245, 245),
                 prefix: Icon(icon),

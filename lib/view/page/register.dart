@@ -1,33 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:d_info/d_info.dart';
-import 'package:food_order_app1/view/page/home.dart';
-import 'package:food_order_app1/view/page/register.dart';
 import 'package:food_order_app1/view/widget/buttonprimary.dart';
 import 'package:food_order_app1/view/widget/mytextfield.dart';
 
-class Login1Page extends StatefulWidget {
-  const Login1Page({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<Login1Page> createState() => _Login1PageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _Login1PageState extends State<Login1Page> {
-  final _passwordController = TextEditingController();
+class _RegisterPageState extends State<RegisterPage> {
   final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
-  void login() {
+  void register() {
     String email = _emailController.text;
     String password = _passwordController.text;
-    if (email == "admin" && password == "123") {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const HomePage(),
-        ),
-      );
+    String confirmPassword = _confirmPasswordController.text;
+
+    if (password == confirmPassword) {
+      Navigator.pop(context); // Kembali ke halaman login
     } else {
-      DInfo.snackBarError(context, "Email atau password salah");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Password tidak cocok")),
+      );
     }
   }
 
@@ -41,15 +38,15 @@ class _Login1PageState extends State<Login1Page> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Ikon Login
+                // Ikon Register
                 Container(
                   width: 100,
                   height: 100,
-                  child: Icon(Icons.account_circle_rounded, size: 100, color: Colors.blue),
+                  child: Icon(Icons.person_add_alt_1_rounded, size: 100, color: Colors.blue),
                 ),
                 const SizedBox(height: 30),
                 const Text(
-                  "Welcome Back!",
+                  "Create Account",
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -57,47 +54,50 @@ class _Login1PageState extends State<Login1Page> {
                 ),
                 const SizedBox(height: 10),
                 const Text(
-                  "Login to your account",
+                  "Register to get started",
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey,
                   ),
                 ),
                 const SizedBox(height: 30),
-                // Input Email
+
                 Mytextfield(
                   controller: _emailController,
-                  hintText: "Email",
+                  hintText: "email",
                   icon: Icons.email,
                   obscureText: false,
                 ),
                 const SizedBox(height: 10),
-                // Input Password
+
                 Mytextfield(
                   controller: _passwordController,
                   hintText: "Password",
                   icon: Icons.lock,
                   obscureText: true,
                 ),
-                const SizedBox(height: 20),
-                // Tombol Login
-                buttonPrimary(
-                  buttonText: "Login",
-                  onPressedActon: login,
+                const SizedBox(height: 10),
+
+                Mytextfield(
+                  controller: _confirmPasswordController,
+                  hintText: "Confirm Password",
+                  icon: Icons.lock,
+                  obscureText: true,
                 ),
                 const SizedBox(height: 20),
-                const Text('Belum punya akun?'),
+                
+                buttonPrimary(
+                  buttonText: "Register",
+                  onPressedActon: register,
+                ),
+                const SizedBox(height: 20),
+                const Text('Sudah punya akun?'),
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const RegisterPage(),
-                      ),
-                    );
+                    Navigator.pop(context);
                   },
                   child: const Text(
-                    'Daftar Sekarang',
+                    'Login di sini',
                     style: TextStyle(
                       color: Colors.blue,
                       fontWeight: FontWeight.bold,

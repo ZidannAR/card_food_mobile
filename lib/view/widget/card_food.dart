@@ -22,9 +22,9 @@ class CardFood extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // Gambar makanan dengan sudut melengkung
           ClipRRect(
@@ -35,61 +35,73 @@ class CardFood extends StatelessWidget {
             child: Image.network(
               img,
               fit: BoxFit.cover,
-              height: 150,
+              height: 120,
               width: double.infinity,
+              errorBuilder: (context, error, stackTrace) {
+                return Container(
+                  height: 120,
+                  color: Colors.grey[300],
+                  child: const Icon(
+                    Icons.broken_image,
+                    color: Colors.grey,
+                  ),
+                );
+              },
             ),
           ),
-          // Detail makanan dengan padding
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Nama makanan
-                Text(
-                  nama,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
+          // Expanded untuk membuat teks berada di bagian bawah dengan jarak yang merata
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Nama makanan
+                  Text(
+                    nama,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const Gap(5),
-                // Harga dan rating
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // Harga
-                    Text(
-                      harga,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.green,
-                        fontWeight: FontWeight.bold,
+                  const Spacer(),
+                  // Harga dan rating di sebelah kanan
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Harga
+                      Text(
+                        harga,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    // Rating dengan ikon bintang
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                          size: 20,
-                        ),
-                        const Gap(4),
-                        Text(
-                          rating,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
+                      // Rating dengan ikon bintang
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                            size: 20,
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
+                          const Gap(4),
+                          Text(
+                            rating,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],
